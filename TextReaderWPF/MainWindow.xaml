@@ -36,24 +36,24 @@
             </Style.Triggers>
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"></Setter>
+                    <Setter Property="CornerRadius" Value="3"></Setter>
                 </Style>
             </Style.Resources>
         </Style>
     </Window.Resources>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="120"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="RegexValues" Grid.Row="0" Grid.Column="0" Margin="10 10 10 0" Orientation="Vertical"></StackPanel>
-        <StackPanel x:Name="Keywords" Grid.Row="0" Grid.Column="1" Margin="10 10 10 0" Orientation="Horizontal"></StackPanel>
-        <Button x:Name="Reset" Click="OnReset" Grid.Row="0" Grid.Column="2" Content="Reset" Margin="10, 10, 10, 0"></Button>
+        <StackPanel x:Name="RegexValues" Grid.Row="0" Grid.Column="0" Margin="0 10 10 0" Orientation="Vertical"></StackPanel>
+        <StackPanel x:Name="Keywords" Grid.Row="0" Grid.Column="1" Margin="10 0 10 0" Orientation="Horizontal"></StackPanel>
+        <Button x:Name="Reset" Click="OnReset" Grid.Row="0" Grid.Column="2" Content="Reset" Margin="10, 0, 0, 0"></Button>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden" CanContentScroll="True" Height="Auto" Width="Auto" Margin="0, 10, 0, 0">
             <TextBlock x:Name="ClipboardText" TextWrapping="Wrap" Background="Wheat" Foreground="DarkSlateBlue" Padding="10" FontSize="16"></TextBlock>
         </ScrollViewer>
