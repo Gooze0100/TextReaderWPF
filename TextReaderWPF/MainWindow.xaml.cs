@@ -63,6 +63,8 @@ namespace TextReaderWPF
             {
                 Button btn = new();
                 btn.Click += CopyToClipboard;
+                btn.HorizontalContentAlignment = HorizontalAlignment.Center;
+                btn.VerticalContentAlignment = VerticalAlignment.Center;
                 btn.Margin = new Thickness(5, 0, 5, 5);
                 btn.Content = item;
                 btn.FontSize = 16;
@@ -74,6 +76,8 @@ namespace TextReaderWPF
             {
                 Button btn = new();
                 btn.Click += CopyToClipboard;
+                btn.HorizontalContentAlignment = HorizontalAlignment.Center;
+                btn.VerticalContentAlignment = VerticalAlignment.Center;
                 btn.Margin = new Thickness(5, 0, 5, 5);
                 btn.Content = item;
                 btn.FontSize = 16;
@@ -104,7 +108,7 @@ namespace TextReaderWPF
                     textBlock.FontSize = 16;
                     textBlock.FontWeight = FontWeights.Bold;
                     textBlock.Background = Brushes.Crimson;
-                    textBlock.Foreground = Brushes.DarkSlateBlue;
+                    textBlock.Foreground = Brushes.WhiteSmoke;
                     textBlock.TextAlignment = TextAlignment.Center;
                     textBlock.Padding = new Thickness(10);
                     textBlock.Margin = new Thickness(5, 0, 5, 0);
