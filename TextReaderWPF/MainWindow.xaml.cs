@@ -14,29 +14,56 @@ namespace TextReaderWPF
             Keywords.Children.Clear();
             ClipboardText.Text = String.Empty;
         }
-
+        // TODO: check images because when copied from pdf image it is crashing, not because of images, because of some other shit
         protected override void OnSourceInitialized(EventArgs e)
         {
-            base.OnSourceInitialized(e);
+            try
+            {
+                base.OnSourceInitialized(e);
 
-            // Initialize the clipboard now that we have a window soruce to use
-            var windowClipboardManager = new ClipboardManager(this);
-            windowClipboardManager.ClipboardChanged += ClipboardChanged;
+                // Initialize the clipboard now that we have a window source to use
+                ClipboardManager windowClipboardManager = new(this);
+                windowClipboardManager.ClipboardChanged += ClipboardChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("OnSourceInitialized: " + ex);
+            }
         }
 
         private void ClipboardChanged(object sender, EventArgs e)
         {
-            // Handle your clipboard update here, debug logging example:
-            if (Clipboard.ContainsText())
+            try
             {
-                string text = Clipboard.GetText();
+                // Handle your clipboard update here:
+                if (Clipboard.ContainsText())
+                {
+                    int tryTime = 5;
+                    string text = String.Empty;
 
-                RegexValues.Children.Clear();
-                Keywords.Children.Clear();
-                ClipboardText.Text = text;
+                    // Create small loop to get text like pool
+                    for (int i = 0; i <= tryTime; i++)
+                    {
+                        Thread.Sleep(100);
+                        text = Clipboard.GetText();
 
-                CheckRegexValues(text);
-                CheckKeywords(text);
+                        if (text != String.Empty)
+                        {
+                            break;
+                        }
+                    }
+
+                    RegexValues.Children.Clear();
+                    Keywords.Children.Clear();
+                    ClipboardText.Text = text;
+
+                    CheckRegexValues(text);
+                    CheckKeywords(text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ClipboardChanged: " + ex);
             }
         }
 
@@ -93,10 +120,12 @@ namespace TextReaderWPF
                 "steunvordering",
                 "nyhetsbrev",
                 "nieuws",
-                "zorg",
-                "zend",
+                " zorg",
+                " zend",
                 "zivver",
-                "doczend"
+                "doczend",
+                "undeliverable",
+                "report"
             };
 
             foreach (string keyword in keywords)

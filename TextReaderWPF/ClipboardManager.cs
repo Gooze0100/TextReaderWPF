@@ -20,27 +20,28 @@ namespace TextReaderWPF
 
         public event EventHandler ClipboardChanged;
 
+        // With constructor creating window from which data will be 
         public ClipboardManager(Window windowSource)
         {
-            HwndSource source = PresentationSource.FromVisual(windowSource) as HwndSource;
+            HwndSource? source = PresentationSource.FromVisual(windowSource) as HwndSource;
             if (source == null)
             {
-                throw new ArgumentException(
-                    "Window source MUST be initialized first, such as in the Window's OnSourceInitialized handler."
-                    , nameof(windowSource));
+                throw new ArgumentException("Window source MUST be initialized first, such as in the Window's OnSourceInitialized handler.", nameof(windowSource));
             }
 
+            // WndProc = delegate
             source.AddHook(WndProc);
 
-            // get window handle for interop
+            // Get window handle for interop
             IntPtr windowHandle = new WindowInteropHelper(windowSource).Handle;
 
-            // register for clipboard events
+            // Register for clipboard events
             NativeMethods.AddClipboardFormatListener(windowHandle);
         }
 
         private void OnClipboardChanged()
         {
+            // Invoking Event
             ClipboardChanged?.Invoke(this, EventArgs.Empty);
         }
 
